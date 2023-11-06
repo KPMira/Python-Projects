@@ -1,0 +1,24 @@
+import os, shutil
+
+path = r"C:\Users\User1\Downloads"
+
+folder_names = ['Excel Files', 'PDF Files', 'DOCS Files','Image Files','Others']
+
+for loop in range(0,5):
+    if not os.path.exists(path + folder_names[loop]):
+        print("Does not exist")
+        os.makedirs(path + folder_names[loop])
+        print("Folders created")
+        
+for file in file_type:
+    if ".csv" in file or ".xlsx" in file and not os.path.exists(path + "CSV Files/" + file):
+        shutil.move(path + file, path + "Excel Files/" + file)
+    elif ".png" in file or ".jpg" in file and not os.path.exists(path + "PNG Files/" + file):
+        shutil.move(path + file, path + "Image Files/" + file)
+    elif ".pdf" in file and not os.path.exists(path + "PDF Files/" + file):
+        shutil.move(path + file, path + "PDF Files/" + file)
+    elif ".docx" in file or ".doc" in file and not os.path.exists(path + "DOCS Files/" + file):
+        shutil.move(path + file, path + "DOCS Files/" + file)
+else:
+    shutil.move(os.path.join(path, file), os.path.join("Others", file))
+    print("Files are sorted and some files are moved in the 'Others' folder.")
